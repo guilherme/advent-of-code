@@ -8,6 +8,14 @@ import java.security.MessageDigest
 fun readInput(name: String) = File("src", "$name.txt")
     .readLines()
 
+/* split array into groups  by predicate */
+fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> =
+    fold(mutableListOf(mutableListOf<T>())) { acc, t ->
+        if (predicate(t)) acc.add(mutableListOf())
+        else acc.last().add(t)
+        acc
+    }.filterNot { it.isEmpty() }
+
 /**
  * Converts string to md5 hash.
  */
