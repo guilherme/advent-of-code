@@ -16,6 +16,10 @@ fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> =
         acc
     }.filterNot { it.isEmpty() }
 
+fun <T> concatenate(vararg lists: List<T>): List<T> {
+    return listOf(*lists).flatten()
+}
+
 /**
  * Converts string to md5 hash.
  */
